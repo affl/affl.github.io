@@ -1,12 +1,196 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AFFL</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Favián FL — Docencia, IA educativa y coordinación académica</title>
+  <meta name="description" content="Favián FL: profesor, coordinador de la LTIN en CUCEA y doctorando en Tecnologías de la Información. Investigación en modelos predictivos de deserción estudiantil y analítica educativa.">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --bg:#0b1220; --panel:#0f172a; --muted:#94a3b8; --text:#e2e8f0; --brand:#60a5fa; --brand-2:#22d3ee; --ok:#34d399;
+      --card:#111827; --border:#1f2937; --shadow:0 10px 30px rgba(2,8,23,.35);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:linear-gradient(180deg,var(--bg),#0a101b);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;line-height:1.6}
+    a{color:var(--brand);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:1100px;margin:0 auto;padding:28px}
+    .nav{display:flex;justify-content:space-between;align-items:center;gap:18px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:.2px}
+    .badge{font-size:12px;padding:3px 8px;border:1px solid var(--border);border-radius:999px;color:var(--muted)}
+    .hero{margin-top:28px;padding:34px;border:1px solid var(--border);background:
+      radial-gradient(1200px 600px at 10% -20%,rgba(96,165,250,.20),transparent 60%),
+      radial-gradient(1000px 500px at 110% 0%,rgba(34,211,238,.18),transparent 55%),
+      var(--panel); border-radius:var(--radius); box-shadow:var(--shadow)}
+    .hero h1{font-size:clamp(28px,4vw,40px);line-height:1.2;margin:0 0 10px}
+    .hero p{color:var(--muted);max-width:70ch;margin:8px 0 20px}
+    .chips{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 24px}
+    .chip{background:rgba(148,163,184,.12);border:1px solid var(--border);color:#cbd5e1;border-radius:999px;padding:6px 12px;font-size:13px}
+    .actions{display:flex;flex-wrap:wrap;gap:12px}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;border:1px solid var(--border);background:#0b1324;color:var(--text);text-decoration:none}
+    .btn.primary{background:linear-gradient(90deg,var(--brand),var(--brand-2));color:#0b1220;font-weight:700}
+    .btn:hover{transform:translateY(-1px);transition:transform .15s}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:20px;margin-top:28px}
+    .card{grid-column:span 12;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;box-shadow:var(--shadow)}
+    @media(min-width:900px){
+      .card.span-4{grid-column:span 4}
+      .card.span-8{grid-column:span 8}
+      .card.span-6{grid-column:span 6}
+    }
+    .card h3{margin:0 0 8px;font-size:20px}
+    .meta{color:var(--muted);font-size:14px}
+    .list{margin:14px 0 0;padding-left:18px}
+    .list li{margin:8px 0}
+    .kpi{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px}
+    .kpi .item{padding:10px 14px;border:1px dashed var(--border);border-radius:12px;font-size:13px;color:#cbd5e1;background:rgba(148,163,184,.06)}
+    .footer{margin:34px 0 10px;text-align:center;color:var(--muted);font-size:14px}
+    .tag{font-size:12px;color:#9ca3af;padding:4px 8px;border:1px solid var(--border);border-radius:999px}
+    .pill{display:inline-flex;align-items:center;gap:8px;font-size:13px;padding:8px 12px;border-radius:999px;border:1px solid var(--border);background:rgba(99,102,241,.12)}
+    .sep{height:1px;background:linear-gradient(90deg,transparent,rgba(148,163,184,.25),transparent);margin:26px 0}
+    .sr-only{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap;border:0;padding:0;margin:-1px}
+  </style>
 </head>
 <body>
-    <h1>¡Hola mundo desde affl.github.io! 🎉</h1>
-    <p>Mi sitio ya está publicado con GitHub Pages.</p>
+  <header class="container nav" aria-label="Barra de navegación">
+    <div class="brand">
+      <span aria-hidden="true">🧭</span> Favián FL
+      <span class="badge">he/him</span>
+    </div>
+    <nav class="actions">
+      <a class="btn" href="https://github.com/affl" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="#" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="mailto:tu.correo@udg.mx">Contacto</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <h1>Docente y coordinador en CUCEA · Doctorando en TI · IA aplicada a retención estudiantil</h1>
+      <p>
+        Soy profesor y coordinador de la Licenciatura en Tecnologías de la Información (LTIN) en la Universidad de Guadalajara (CUCEA).
+        Investigo y desarrollo <strong>modelos predictivos de deserción temprana</strong> para identificar estudiantes en riesgo y
+        diseñar intervenciones personalizadas, integrando analítica educativa, machine learning y marcos como PRISMA y Tinto.
+      </p>
+      <div class="chips">
+        <span class="chip">Analítica educativa</span>
+        <span class="chip">Modelos predictivos</span>
+        <span class="chip">Logistic Regression & ML</span>
+        <span class="chip">PHP · Java · R</span>
+        <span class="chip">NetLogo · BDI</span>
+        <span class="chip">Gestión académica</span>
+      </div>
+      <div class="actions">
+        <a class="btn primary" href="#" target="_blank" rel="noopener">Descargar CV</a>
+        <a class="btn" href="#proyectos">Ver proyectos</a>
+        <a class="btn" href="#investigacion">Líneas de investigación</a>
+      </div>
+    </section>
+
+    <div class="sep" role="presentation"></div>
+
+    <!-- RESUMEN / ABOUT -->
+    <section class="grid" aria-labelledby="about-title">
+      <div class="card span-8">
+        <h3 id="about-title">Resumen profesional</h3>
+        <p class="meta">Universidad de Guadalajara · CUCEA</p>
+        <p>
+          Coordino la LTIN y enseño <strong>programación web, bases de datos y POO</strong>.
+          Paralelamente curso el <strong>Doctorado en Tecnologías de la Información</strong> con énfasis en
+          <em>predicción temprana de deserción universitaria</em> (2019–2024: ~20–25% en los dos primeros semestres).
+          Busco convertir datos académicos y socioeconómicos en <strong>decisiones accionables</strong> para elevar la permanencia.
+        </p>
+        <div class="kpi" aria-label="Indicadores clave">
+          <span class="item">Retención · alertas tempranas</span>
+          <span class="item">Dashboards para coordinación</span>
+          <span class="item">Buenas prácticas · ética de datos</span>
+        </div>
+      </div>
+
+      <aside class="card span-4">
+        <h3>Contacto rápido</h3>
+        <ul class="list">
+          <li>✉️ <a href="mailto:tu.correo@udg.mx">tu.correo@udg.mx</a></li>
+          <li>🐙 <a href="https://github.com/affl" target="_blank" rel="noopener">github.com/affl</a></li>
+          <li>🔗 <a href="#" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li>🎓 <a href="#" target="_blank" rel="noopener">Google Scholar</a></li>
+        </ul>
+        <p class="meta">Disponible para colaboraciones académicas, talleres y revisión de planes de curso.</p>
+      </aside>
+    </section>
+
+    <!-- INVESTIGACIÓN -->
+    <section id="investigacion" class="grid" aria-labelledby="inv-title">
+      <div class="card span-6">
+        <h3 id="inv-title">Líneas de investigación</h3>
+        <ul class="list">
+          <li><strong>Deserción temprana</strong>: modelos predictivos (regresión logística, árboles, ensambles).</li>
+          <li><strong>Variables clave</strong>: académicas, socioeconómicas y demográficas; encuestas de inducción.</li>
+          <li><strong>Validación</strong>: PRISMA para revisión sistemática; métricas de precisión y calibración.</li>
+          <li><strong>Intervenciones</strong>: tableros de alerta, tutorías y estrategias personalizadas.</li>
+        </ul>
+        <div class="kpi">
+          <span class="tag">Ética y privacidad</span>
+          <span class="tag">Explicabilidad</span>
+          <span class="tag">Utility institucional</span>
+        </div>
+      </div>
+      <div class="card span-6">
+        <h3>Publicaciones y trabajos</h3>
+        <ul class="list">
+          <li>Artículo de revisión: <em>Predicción temprana de deserción universitaria: revisión sistemática de modelos predictivos</em> (en preparación para revista latinoamericana).</li>
+          <li>Protocolos y dashboards internos de alerta temprana (CUCEA).</li>
+          <li>Material docente: normalización BD, POO con Java Swing, PHP seguro, NetLogo (agentes).</li>
+        </ul>
+        <p class="meta">¿Tienes un dataset institucional? Podemos diseñar un pipeline reproducible y ético.</p>
+      </div>
+    </section>
+
+    <!-- PROYECTOS -->
+    <section id="proyectos" class="grid" aria-labelledby="proj-title">
+      <div class="card span-4">
+        <h3 id="proj-title">CotoZen (SaaS)</h3>
+        <p>Plataforma de gestión de condominios/cotos en Laravel. Módulos de pagos, incidencias, roles y planes.</p>
+        <p class="meta">Stack: Laravel 11, Livewire Volt.</p>
+        <a class="pill" href="#" target="_blank" rel="noopener">Ver demo →</a>
+      </div>
+      <div class="card span-4">
+        <h3>Tablero de retención</h3>
+        <p>Dashboard de riesgo con umbrales configurables, monitoreo por cohorte y exportes para tutorías.</p>
+        <p class="meta">Stack: R / Python · Shiny/Streamlit (según entorno).</p>
+        <span class="pill">Próximamente disponible</span>
+      </div>
+      <div class="card span-4">
+        <h3>Docencia y guías</h3>
+        <p>Prácticas paso a paso: PHP seguro, sesiones con MySQL, Java Swing, normalización y SQL avanzado.</p>
+        <a class="pill" href="https://github.com/affl?tab=repositories" target="_blank" rel="noopener">Repos de clase →</a>
+      </div>
+    </section>
+
+    <!-- DOCENCIA -->
+    <section class="grid" aria-labelledby="teach-title">
+      <div class="card span-8">
+        <h3 id="teach-title">Docencia</h3>
+        <ul class="list">
+          <li>Programación Web (PHP moderno, seguridad, sesiones, MVC básico).</li>
+          <li>POO con Java (incluye GUI con Swing y patrones introductorios).</li>
+          <li>Bases de datos (modelado, SQL, normalización y prácticas evaluables).</li>
+        </ul>
+      </div>
+      <div class="card span-4">
+        <h3>Disponibilidad</h3>
+        <p class="meta">Charlas, talleres y asesoría en implementación de analítica educativa y early-warning.</p>
+        <a class="btn" href="mailto:tu.correo@udg.mx">Agendar conversación</a>
+      </div>
+    </section>
+
+    <p class="footer">© <span id="y"></span> Favián FL · CUCEA · <span class="meta">Este sitio está alojado en GitHub Pages.</span></p>
+  </main>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 </body>
 </html>

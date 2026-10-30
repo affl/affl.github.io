@@ -6,9 +6,25 @@
   <meta content="Portafolio académico y profesional de Anastacio Favián Flores Lira: tecnología, docencia, gestión académica e investigación educativa." name="description"/>
   <meta content="#101b35" name="theme-color"/>
   <title>
-   AFFL | Tecnología, educación e innovación
+   Favián Flores | Tecnología, educación e innovación
   </title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <!-- Aplicar el tema guardado antes de dibujar la página para evitar destellos. -->
+  <script>
+    (function () {
+        try {
+            const savedTheme = localStorage.getItem('affl-theme');
+            const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = savedTheme === 'dark' || savedTheme === 'light'
+                ? savedTheme
+                : (systemDark ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+        } catch (error) {
+            document.documentElement.setAttribute('data-theme',
+                window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        }
+    })();
+  </script>
   <style>
    /* 1. PALETA Y ESTILOS GENERALES */
         :root {
@@ -521,6 +537,143 @@ footer a {
         animation:none !important;
     }
 }
+
+/* 10. SELECTOR DE TEMA: modo claro y modo oscuro */
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: var(--surface);
+    color: var(--text);
+    font-size: 1.15rem;
+    cursor: pointer;
+    transition: background .2s, border-color .2s, transform .2s;
+}
+.theme-toggle:hover {
+    background: var(--background);
+    border-color: var(--purple);
+    transform: translateY(-2px);
+}
+.theme-toggle:focus-visible {
+    outline: 3px solid var(--teal);
+    outline-offset: 3px;
+}
+/* Solo mostramos el icono correspondiente al tema actual. */
+.theme-toggle .icon-sun { display: none; }
+[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+[data-theme="dark"] .theme-toggle .icon-sun { display: inline; }
+
+/* Los colores oscuros se aplican solo a superficies y textos; la portada
+   mantiene su degradado original para conservar la identidad visual. */
+[data-theme="dark"] {
+    color-scheme: dark;
+    --navy: #101b35;
+    --navy-light: #1c2d51;
+    --purple: #a99bff;
+    --purple-dark: #b7abff;
+    --teal: #35d6c6;
+    --text: #f1f5f9;
+    --muted: #b2bfd3;
+    --surface: #172238;
+    --background: #0b1220;
+    --line: #33415a;
+}
+[data-theme="dark"] .navbar {
+    background: rgba(17, 27, 46, .97);
+}
+[data-theme="dark"] .navbar-brand,
+[data-theme="dark"] .navbar-nav .nav-link {
+    color: var(--text);
+}
+[data-theme="dark"] .navbar-nav .nav-link:hover,
+[data-theme="dark"] .navbar-nav .nav-link.active {
+    color: #c5bbff;
+    background: #2b2752;
+}
+[data-theme="dark"] .nav-contact {
+    background: #6956e8;
+    color: #fff !important;
+}
+[data-theme="dark"] .navbar-toggler {
+    border-color: #66748a;
+}
+[data-theme="dark"] .navbar-toggler-icon {
+    filter: invert(1) grayscale(1);
+}
+[data-theme="dark"] .hero {
+    background: radial-gradient(circle at 83% 22%, #5749a15c, transparent 30%),
+                linear-gradient(115deg, #101b35 8%, #1a2b4e 64%, #2c285f);
+}
+[data-theme="dark"] .btn-primary-custom {
+    background: #6956e8;
+    border-color: #6956e8;
+    color: #fff;
+}
+[data-theme="dark"] .btn-primary-custom:hover {
+    background: #5541d3;
+    border-color: #5541d3;
+}
+[data-theme="dark"] .photo-caption {
+    background: var(--surface);
+    color: var(--text);
+}
+[data-theme="dark"] .about-panel,
+[data-theme="dark"] .work-card {
+    background: var(--surface);
+}
+[data-theme="dark"] .about-intro,
+[data-theme="dark"] .timeline-card h3,
+[data-theme="dark"] .work-content h3,
+[data-theme="dark"] .skill-group h3 {
+    color: var(--text);
+}
+[data-theme="dark"] .experience,
+[data-theme="dark"] .skills {
+    background: #111b2e;
+}
+[data-theme="dark"] .timeline-card,
+[data-theme="dark"] .skill-group {
+    background: #1b2940;
+}
+[data-theme="dark"] .timeline-marker {
+    border-color: #111b2e;
+}
+[data-theme="dark"] .timeline::before {
+    background: #554c91;
+}
+[data-theme="dark"] .timeline-card:hover {
+    border-color: #8575df;
+}
+[data-theme="dark"] .skill-list span {
+    background: #332b60;
+    color: #e1dbff;
+}
+[data-theme="dark"] .contact-panel {
+    background: linear-gradient(115deg, #25234a, #163a41);
+}
+[data-theme="dark"] .contact-panel p {
+    color: var(--muted);
+}
+[data-theme="dark"] footer {
+    background: #080e1a;
+}
+[data-theme="dark"] .role-org,
+[data-theme="dark"] .work-label,
+[data-theme="dark"] .eyebrow {
+    color: #b7abff;
+}
+[data-theme="dark"] .art-1 { background: linear-gradient(135deg, #263963, #384c80); color: #d3ddff; }
+[data-theme="dark"] .art-2 { background: linear-gradient(135deg, #123c3c, #24635d); color: #b6f5e8; }
+[data-theme="dark"] .art-3 { background: linear-gradient(135deg, #382a60, #574184); color: #e0d3ff; }
+/* Evitar animaciones innecesarias para quienes prefieren movimiento reducido. */
+@media (prefers-reduced-motion: reduce) {
+    .theme-toggle { transition: none; }
+}
+
   </style>
  </head>
  <body>
@@ -566,6 +719,18 @@ footer a {
       </li>
      </ul>
     </div>
+    <!-- Botón accesible para alternar entre modo claro y oscuro. -->
+    <button
+        id="themeToggle"
+        class="theme-toggle ms-3"
+        type="button"
+        aria-label="Activar modo oscuro"
+        title="Cambiar tema"
+        aria-pressed="false"
+    >
+        <span class="icon-moon" aria-hidden="true">☾</span>
+        <span class="icon-sun" aria-hidden="true">☀</span>
+    </button>
    </div>
   </nav>
   <main>
@@ -623,7 +788,7 @@ footer a {
          <strong>
           ●
          </strong>
-         Educación + Innovación
+         Educación + tecnología
         </div>
        </div>
       </div>
@@ -896,47 +1061,100 @@ footer a {
      <div class="row g-4">
       <div class="col-lg-4">
        <div class="skill-group">
-            <h3>⌘ Desarrollo tecnológico</h3>
+        <h3>
+         ⌘ Desarrollo tecnológico
+        </h3>
         <div class="skill-list">
-            <span>HTML y CSS</span>
-            <span>Bootstrap</span>
-            <span>PHP y MySQL</span>
-            <span>Laravel</span>
-            <span>Drupal CMS</span>
-            <span>Java</span>
-            <span>Diseño UI/UX</span>
-            <span>Desarrollo de software</span>
-            <span>Automatización de procesos</span>
+         <span>
+          HTML y CSS
+         </span>
+         <span>
+          Bootstrap
+         </span>
+         <span>
+          PHP y MySQL
+         </span>
+         <span>
+          Laravel
+         </span>
+         <span>
+          Drupal CMS
+         </span>
+         <span>
+          Diseño UI/UX
+         </span>
+         <span>
+          Desarrollo de software
+         </span>
+         <span>
+          Automatización de procesos
+         </span>
         </div>
        </div>
       </div>
       <div class="col-lg-4">
        <div class="skill-group">
-            <h3>◈ Datos e investigación</h3>
+        <h3>
+         ◈ Datos e investigación
+        </h3>
         <div class="skill-list">
-            <span>Python</span>
-            <span>Análisis de datos</span>
-            <span>Machine Learning</span>
-            <span>Modelos predictivos</span>
-            <span>Analítica educativa</span>
-            <span>Inteligencia artificial</span>
-            <span>Investigación educativa</span>
-            <span>Visualización de datos</span>
+         <span>
+          Python
+         </span>
+         <span>
+          Análisis de datos
+         </span>
+         <span>
+          Machine Learning
+         </span>
+         <span>
+          Modelos predictivos
+         </span>
+         <span>
+          Analítica educativa
+         </span>
+         <span>
+          Inteligencia artificial
+         </span>
+         <span>
+          Investigación educativa
+         </span>
+         <span>
+          Visualización de datos
+         </span>
         </div>
        </div>
       </div>
       <div class="col-lg-4">
        <div class="skill-group">
-            <h3>✦ Educación y liderazgo</h3>
+        <h3>
+         ✦ Educación y liderazgo
+        </h3>
         <div class="skill-list">
-            <span>Docencia universitaria</span>
-            <span>Coordinación académica</span>
-            <span>Liderazgo de equipos</span>
-            <span>Gestión de proyectos</span>
-            <span>Innovación educativa</span>
-            <span>Transformación digital</span>
-            <span>Planeación académica</span>
-            <span>Mejora continua</span>
+         <span>
+          Docencia universitaria
+         </span>
+         <span>
+          Coordinación académica
+         </span>
+         <span>
+          Liderazgo de equipos
+         </span>
+         <span>
+          Gestión de proyectos
+         </span>
+         <span>
+          Innovación educativa
+         </span>
+         <span>
+          Transformación digital
+         </span>
+         <span>
+          Planeación académica
+         </span>
+         <span>
+          Mejora continua
+         </span>
         </div>
        </div>
       </div>
@@ -999,6 +1217,43 @@ footer a {
             const menu = document.getElementById('menu');
             if (menu.classList.contains('show')) bootstrap.Collapse.getOrCreateInstance(menu).hide();
         }));
+
+        // 3. TEMA CLARO / OSCURO
+        const themeToggle = document.getElementById('themeToggle');
+        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+        function updateThemeButton() {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            themeToggle.setAttribute('aria-label', isDark ? 'Activar modo claro' : 'Activar modo oscuro');
+            themeToggle.setAttribute('aria-pressed', String(isDark));
+            themeToggle.title = isDark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro';
+            document.querySelector('meta[name="theme-color"]')
+                .setAttribute('content', isDark ? '#0b1220' : '#101b35');
+        }
+
+        themeToggle.addEventListener('click', function () {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const nextTheme = isDark ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', nextTheme);
+            try {
+                localStorage.setItem('affl-theme', nextTheme);
+            } catch (error) {
+                // El cambio funciona aunque el navegador bloquee el almacenamiento.
+            }
+            updateThemeButton();
+        });
+
+        // Si no existe una preferencia guardada, seguir los cambios del sistema.
+        systemTheme.addEventListener('change', function (event) {
+            let savedTheme = null;
+            try { savedTheme = localStorage.getItem('affl-theme'); } catch (error) {}
+            if (savedTheme !== 'light' && savedTheme !== 'dark') {
+                document.documentElement.setAttribute('data-theme', event.matches ? 'dark' : 'light');
+                updateThemeButton();
+            }
+        });
+
+        updateThemeButton();
   </script>
  </body>
 </html>

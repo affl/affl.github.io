@@ -9,21 +9,9 @@
    Favián Flores | Tecnología, educación e innovación
   </title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
-  <!-- Aplicar el tema guardado antes de dibujar la página para evitar destellos. -->
+  <!-- El sitio siempre inicia en modo claro, incluso al recargar. -->
   <script>
-    (function () {
-        try {
-            const savedTheme = localStorage.getItem('affl-theme');
-            const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const theme = savedTheme === 'dark' || savedTheme === 'light'
-                ? savedTheme
-                : (systemDark ? 'dark' : 'light');
-            document.documentElement.setAttribute('data-theme', theme);
-        } catch (error) {
-            document.documentElement.setAttribute('data-theme',
-                window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        }
-    })();
+    document.documentElement.setAttribute('data-theme', 'light');
   </script>
   <style>
    /* 1. PALETA Y ESTILOS GENERALES */
@@ -562,10 +550,20 @@ footer a {
     outline: 3px solid var(--teal);
     outline-offset: 3px;
 }
-/* Solo mostramos el icono correspondiente al tema actual. */
+/* Iconos SVG minimalistas: trazos sin relleno y color heredado. */
+.theme-toggle svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+/* Mostramos la luna en modo claro y el sol en modo oscuro. */
 .theme-toggle .icon-sun { display: none; }
 [data-theme="dark"] .theme-toggle .icon-moon { display: none; }
-[data-theme="dark"] .theme-toggle .icon-sun { display: inline; }
+[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
 
 /* Los colores oscuros se aplican solo a superficies y textos; la portada
    mantiene su degradado original para conservar la identidad visual. */
@@ -674,6 +672,41 @@ footer a {
     .theme-toggle { transition: none; }
 }
 
+
+/* Navegación responsiva: controles fijos junto al logotipo. */
+.navbar > .container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.navbar-brand { order: 1; margin-right: auto; }
+.navbar-controls {
+    order: 2;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-left: auto;
+}
+.navbar-collapse { order: 3; flex-basis: 100%; }
+.navbar-controls .navbar-toggler {
+    margin: 0;
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: none;
+}
+.navbar-controls .navbar-toggler:focus { box-shadow: 0 0 0 2px rgba(105,86,232,.17); }
+@media (min-width: 992px) {
+    .navbar-brand { margin-right: 0; }
+    .navbar-collapse { order: 2; flex-basis: auto; }
+    .navbar-controls { order: 3; margin-left: 14px; }
+}
+@media (max-width: 991.98px) {
+    .navbar-collapse { width: 100%; }
+    .navbar-nav { padding-top: 12px; padding-bottom: 8px; }
+    .navbar-controls .navbar-toggler-icon { width: 1.25em; height: 1.25em; }
+}
   </style>
  </head>
  <body>
@@ -686,10 +719,6 @@ footer a {
       .
      </span>
     </a>
-    <button aria-controls="menu" aria-expanded="false" aria-label="Mostrar menú" class="navbar-toggler" data-bs-target="#menu" data-bs-toggle="collapse" type="button">
-     <span class="navbar-toggler-icon">
-     </span>
-    </button>
     <div class="collapse navbar-collapse" id="menu">
      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
       <li class="nav-item">
@@ -719,18 +748,31 @@ footer a {
       </li>
      </ul>
     </div>
+    <div class="navbar-controls">
     <!-- Botón accesible para alternar entre modo claro y oscuro. -->
     <button
         id="themeToggle"
-        class="theme-toggle ms-3"
+        class="theme-toggle"
         type="button"
         aria-label="Activar modo oscuro"
         title="Cambiar tema"
         aria-pressed="false"
     >
-        <span class="icon-moon" aria-hidden="true">☾</span>
-        <span class="icon-sun" aria-hidden="true">☀</span>
+        <!-- Luna: icono de contorno, sin relleno. -->
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20.5 14.3A8.5 8.5 0 0 1 9.7 3.5 8.5 8.5 0 1 0 20.5 14.3Z" />
+        </svg>
+        <!-- Sol: icono de contorno, sin relleno. -->
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
+        </svg>
     </button>
+    <button aria-controls="menu" aria-expanded="false" aria-label="Mostrar menú" class="navbar-toggler" data-bs-target="#menu" data-bs-toggle="collapse" type="button">
+     <span class="navbar-toggler-icon">
+     </span>
+    </button>
+    </div>
    </div>
   </nav>
   <main>
@@ -1220,7 +1262,6 @@ footer a {
 
         // 3. TEMA CLARO / OSCURO
         const themeToggle = document.getElementById('themeToggle');
-        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
 
         function updateThemeButton() {
             const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
@@ -1235,22 +1276,7 @@ footer a {
             const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             const nextTheme = isDark ? 'light' : 'dark';
             document.documentElement.setAttribute('data-theme', nextTheme);
-            try {
-                localStorage.setItem('affl-theme', nextTheme);
-            } catch (error) {
-                // El cambio funciona aunque el navegador bloquee el almacenamiento.
-            }
             updateThemeButton();
-        });
-
-        // Si no existe una preferencia guardada, seguir los cambios del sistema.
-        systemTheme.addEventListener('change', function (event) {
-            let savedTheme = null;
-            try { savedTheme = localStorage.getItem('affl-theme'); } catch (error) {}
-            if (savedTheme !== 'light' && savedTheme !== 'dark') {
-                document.documentElement.setAttribute('data-theme', event.matches ? 'dark' : 'light');
-                updateThemeButton();
-            }
         });
 
         updateThemeButton();
